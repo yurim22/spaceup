@@ -53,50 +53,51 @@ const Footer = styled.div`
 `;
 
 const textMap = {
-  login: "통합로그입(SSO)",
+  login: "통합로그인(SSO)",
   register: "회원가입",
 };
 // 통합 로그인(SSO)  |
-const AuthForm = ({ type }) => {
+const AuthForm = ({ type, form, onChange, onSubmit }) => {
   const text = textMap[type];
-  const [department, setDept] = React.useState('');
+  // const [user_Department, setDept] = React.useState('');
 
-  // const inputLabel = React.useRef(null);
-  // const [labelWidth, setLabelWidth] = React.useState(0);
-  // React.useEffect(() => {
-  //   setLabelWidth(inputLabel.current.offsetWidth);
-  // }, []);
-
-  const handleChange = event => {
-    setDept(event.target.value);
-  };
+  // const handleChange = event => {
+  //   setDept(event.target.value);
+  // };
 
   return (
     <AuthFormBlock>
       <div className="SSO">{text}</div>
       <div className="stupro">학생, 교직원 전용</div>
-      <form>
+      <form onSubmit={onSubmit}>
         {type === 'register' && (
           <TextField
-            id="user_name"
+            id="standard-basic"
             className="inputs"
             label="Name"
             margin="normal"
+            onChange={onChange}
+            value={form.user_Name}
           />
         )}
+        
         <TextField
-          id="user_id"
+          id="user_Id"
           className="inputs"
           label="ID"
           margin="normal"
+          onChange={onChange}
+          value={form.user_Id}
         />
 
         <TextField
-          id="password"
+          id="user_password"
           className="inputs"
           label="Password"
           margin="normal"
           type="password"
+          onChange={onChange}
+          value={form.user_password}
         />
         {type === 'register' && (
           <TextField
@@ -105,16 +106,18 @@ const AuthForm = ({ type }) => {
             label="Password Confirm"
             margin="normal"
             type="password"
+            onChange={onChange}
+            value={form.password_confirm}
           />
         )}
         {type === 'register' && (
-          <FormControl className ="inputs">
-            <InputLabel id="user_department">Department</InputLabel>
+          <FormControl className="inputs">
+            <InputLabel id="user_Department">Department</InputLabel>
             <Select
-              labelId="user_department"
-              id="user_department"
-              value={department}
-              onChange={handleChange}
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={form.user_Department}
+              onChange={onChange}
             >
               <MenuItem value={"융합소프트웨어학부"}>융합소프트웨어학부</MenuItem>
               <MenuItem value={"디지털콘텐츠디자인학과"}>디지털콘텐츠디자인학과</MenuItem>
@@ -124,7 +127,7 @@ const AuthForm = ({ type }) => {
         )}
 
         <ButtonStyled blue fullWidth >
-          {text}
+          확인
         </ButtonStyled>
       </form>
       <Footer>
