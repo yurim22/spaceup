@@ -7,3 +7,5 @@ export const register = ({ user_Id, user_password, user_Name, user_Department}) 
   client.post('/api/auth/register', { user_Id, user_password, user_Name, user_Department });
 
 export const check = () => client.get('/api/auth/check');
+
+export const logout = () => client.post('/api/auth/logout');

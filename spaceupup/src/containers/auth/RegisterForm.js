@@ -70,11 +70,15 @@ const RegisterForm = ({history}) => {
   }, [auth, authError,dispatch]);
 
   useEffect(() => {
-   if(user) {
-     history.push('/');
-   }
+    if(user) {
+      history.push('/');
+      try {
+        localStorage.setItem('user', JSON.stringify(user));
+      } catch(e) {
+        console.log('localStorage is not working')
+      }
+    }
   }, [history, user]);
-
 
   return (
     <AuthForm
