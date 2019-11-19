@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '../common/Button';
 import { Link } from 'react-router-dom';
 import palette from '../../lib/styles/palette';
-
+// import Button from '@material-ui/core/Button';
 
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -56,8 +56,16 @@ const textMap = {
   login: "통합로그인(SSO)",
   register: "회원가입",
 };
-// 통합 로그인(SSO)  |
-const AuthForm = ({ type, form, onChange, onSubmit }) => {
+
+const ErrorMessage = styled.div `
+  color : red;
+  text-align : center;
+  font-sizw: 0.8rem;
+  margin-top : 1rem;
+  font-family : 'S-CoreDream-2ExtraLight';
+`;
+
+const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
   const text = textMap[type];
   // const [user_Department, setDept] = React.useState('');
 
@@ -72,10 +80,11 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
       <form onSubmit={onSubmit}>
         {type === 'register' && (
           <TextField
-            id="standard-basic"
+            id="user_Name"
             className="inputs"
             label="Name"
             margin="normal"
+            name="user_Name"
             onChange={onChange}
             value={form.user_Name}
           />
@@ -86,6 +95,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
           className="inputs"
           label="ID"
           margin="normal"
+          name="user_Id"
           onChange={onChange}
           value={form.user_Id}
         />
@@ -96,6 +106,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
           label="Password"
           margin="normal"
           type="password"
+          name="user_password"
           onChange={onChange}
           value={form.user_password}
         />
@@ -106,6 +117,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
             label="Password Confirm"
             margin="normal"
             type="password"
+            name="password_confirm"
             onChange={onChange}
             value={form.password_confirm}
           />
@@ -116,6 +128,7 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
+              name="user_Department"
               value={form.user_Department}
               onChange={onChange}
             >
@@ -125,8 +138,8 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
           </FormControl>
 
         )}
-
-        <ButtonStyled blue fullWidth >
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+        <ButtonStyled blue fullWidth onClick={onSubmit}>
           확인
         </ButtonStyled>
       </form>

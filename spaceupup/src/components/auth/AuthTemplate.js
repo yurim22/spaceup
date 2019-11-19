@@ -34,6 +34,7 @@ const InnerBox = styled.div`
   width: 400px;
   background: white;
   border-radius: 2px;
+  
 `
 
 const AuthTemplate = ({ children }) => {
