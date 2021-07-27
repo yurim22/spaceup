@@ -25,5 +25,8 @@ pages
 * 예약 시간 선택
 * 예약 정보 
 
-### LOGIN PAGE
+### SIGNIN PAGE
 ![image](https://user-images.githubusercontent.com/33304898/127075118-3d1a7172-40cc-4d59-87bc-8e1ae88e93a5.png)
+
+### SIGNUP PAGE
+![image](https://user-images.githubusercontent.com/33304898/127075202-630ac372-66b5-4c68-bcf5-00df4b086972.png)
